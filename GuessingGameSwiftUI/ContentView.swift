@@ -23,44 +23,48 @@ struct ContentView: View {
     @State private var guessCount = 0
     @State private var correctAnswer = Int.random(in: 1...1000)
     @State private var guess = ""
-    @State private var feedback = ""
-
+    @State private var feedback = "\n"
+    
     var body: some View {
         VStack(spacing: 30) {
             Group {
-                Spacer()
-                Text("I'm thinking of a number between 0 and 1000.\nGuess it!")
-                    .font(.title)
-                    .multilineTextAlignment(.center)
-            }
-            Group {
+                Text("Guessing Game")
+                    .font(.largeTitle)
+                    .padding(.top)
                 Spacer()
                 TextField("Enter your guess", text: $guess)
-                    .frame(width: 200, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
-                    .multilineTextAlignment(.center)
                     .keyboardType(.numberPad)
-                Spacer()
+                    .font(.title2)
                 Button("Guess") {
                     checkGuess()
                 }
             }
             Group {
-                Spacer()
                 Text("\(feedback)")
-                Spacer()
+                    .minimumScaleFactor(0.75)
                 Text("\(guessCount) guesses made.")
-                    .multilineTextAlignment(.center)
+                    .minimumScaleFactor(0.75)
                 Spacer()
             }
+            .padding(.trailing)
+            .padding(.leading)
         }
+        .multilineTextAlignment(.center)
     }
     
     func checkGuess() {
         
+        // Verify that input was valid
+        guard let guess = Double(guess) else {
+            self.guess = ""
+            feedback = "Please provide an integer between 1 and 1000."
+            return
+        }
+        
         hideKeyboard()
         guessCount += 1
         print("Guess made")
-
+        
     }
 }
 
