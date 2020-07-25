@@ -23,15 +23,13 @@ struct ContentView: View {
     @State private var guessCount = 0
     @State private var correctAnswer = Int.random(in: 1...1000)
     @State private var guess = ""
+    @State private var feedback = ""
 
     var body: some View {
         VStack(spacing: 30) {
             Group {
                 Spacer()
-                Text("I'm thinking of a number between 0 and 1000.")
-                    .font(.title)
-                    .multilineTextAlignment(.center)
-                Text("Guess it!")
+                Text("I'm thinking of a number between 0 and 1000.\nGuess it!")
                     .font(.title)
                     .multilineTextAlignment(.center)
             }
@@ -47,6 +45,8 @@ struct ContentView: View {
                 }
             }
             Group {
+                Spacer()
+                Text("\(feedback)")
                 Spacer()
                 Text("\(guessCount) guesses made.")
                     .multilineTextAlignment(.center)
