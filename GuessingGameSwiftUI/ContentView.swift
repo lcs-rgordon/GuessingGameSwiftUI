@@ -53,17 +53,32 @@ struct ContentView: View {
     }
     
     func checkGuess() {
-        
+
+        // Hide the keyboard
+        hideKeyboard()
+
         // Verify that input was valid
-        guard let guess = Double(guess) else {
+        guard let guess = Int(guess) else {
             self.guess = ""
             feedback = "Please provide an integer between 1 and 1000."
             return
         }
         
-        hideKeyboard()
+        // Is the guess correct?
+        if guess < correctAnswer {
+            feedback = "Guess higher next time!"
+        } else if guess > correctAnswer {
+            feedback = "Guess lower next time!"
+        } else {
+            feedback = "You're right! Well done."
+        }
+        
+        
+        // Track how many guesses made!
         guessCount += 1
-        print("Guess made")
+        
+        // DEBUG
+        print("Guess of \(guess) made against correct answer of \(correctAnswer)")
         
     }
 }
