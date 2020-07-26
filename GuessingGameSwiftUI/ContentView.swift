@@ -40,34 +40,39 @@ struct ContentView: View {
     }
 
     var body: some View {
-        VStack(spacing: 30) {
-            Group {
-                Text("Guessing Game")
-                    .font(.largeTitle)
-                    .padding(.top)
-                Spacer()
-                TextField("Enter your guess", text: $guess)
-                    .keyboardType(.numberPad)
-                    .font(.title2)
-                Button(buttonTitle.rawValue, action: {
-                    if gameOver {
-                        newGame()
-                    } else {
-                        checkGuess()
-                    }
-                })
+        ZStack {
+            LinearGradient(gradient: Gradient(colors: [.white, .blue]), startPoint: .top, endPoint: .bottom).edgesIgnoringSafeArea(.all)
+
+            VStack(spacing: 30) {
+                Group {
+                    Text("Guessing Game")
+                        .font(.largeTitle)
+                        .fontWeight(.black)
+                        .padding(.top)
+                    Spacer()
+                    TextField("Enter a guess between 1 and 1000", text: $guess)
+                        .keyboardType(.numberPad)
+                        .font(.title2)
+                    Button(buttonTitle.rawValue, action: {
+                        if gameOver {
+                            newGame()
+                        } else {
+                            checkGuess()
+                        }
+                    })
+                }
+                Group {
+                    Text("\(feedback)")
+                        .minimumScaleFactor(0.75)
+                    Text("\(guessCount) guesses made.")
+                        .minimumScaleFactor(0.75)
+                    Spacer()
+                }
+                .padding(.trailing)
+                .padding(.leading)
             }
-            Group {
-                Text("\(feedback)")
-                    .minimumScaleFactor(0.75)
-                Text("\(guessCount) guesses made.")
-                    .minimumScaleFactor(0.75)
-                Spacer()
-            }
-            .padding(.trailing)
-            .padding(.leading)
+            .multilineTextAlignment(.center)
         }
-        .multilineTextAlignment(.center)
     }
     
     func checkGuess() {
