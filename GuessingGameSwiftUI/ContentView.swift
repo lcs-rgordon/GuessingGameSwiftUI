@@ -49,7 +49,7 @@ struct ContentView: View {
                         .keyboardType(.numberPad)
                         .font(.title)
                         .minimumScaleFactor(0.75)
-                    Button("\(gameOver ? ButtonAction.newGame.rawValue : ButtonAction.guess.rawValue)" , action: {
+                    Button("\(gameOver ? ButtonAction.newGame.rawValue : ButtonAction.guess.rawValue)", action: {
                         if gameOver {
                             newGame()
                         } else {
@@ -59,13 +59,11 @@ struct ContentView: View {
                 }
                 Group {
                     Text("\(feedback)")
-                        .minimumScaleFactor(0.75)
                     Text("\(guessCount) guesses made.")
-                        .minimumScaleFactor(0.75)
                     Spacer()
                 }
-                .padding(.trailing)
-                .padding(.leading)
+                .minimumScaleFactor(0.75)
+                .padding(.horizontal)
             }
             .multilineTextAlignment(.center)
         }
