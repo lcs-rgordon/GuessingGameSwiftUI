@@ -41,8 +41,10 @@ struct ContentView: View {
 
     var body: some View {
         ZStack {
-            LinearGradient(gradient: Gradient(colors: [.white, .blue]), startPoint: .top, endPoint: .bottom).edgesIgnoringSafeArea(.all)
-
+            LinearGradient(gradient: Gradient(colors: [.primary, .secondary]), startPoint: .top, endPoint: .bottom)
+                .edgesIgnoringSafeArea(.all)
+                .colorInvert()
+            
             VStack(spacing: 30) {
                 Group {
                     Text("Guessing Game")
@@ -119,5 +121,6 @@ struct ContentView: View {
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         ContentView()
+        ContentView().environment(\.colorScheme, .dark)
     }
 }
