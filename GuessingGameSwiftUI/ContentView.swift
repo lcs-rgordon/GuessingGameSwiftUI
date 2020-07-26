@@ -51,8 +51,10 @@ struct ContentView: View {
                         .padding(.top)
                     Spacer()
                     TextField("Enter a guess between 1 and 1000", text: $guess)
+                        .padding(.horizontal, 10.0)
                         .keyboardType(.numberPad)
-                        .font(.title2)
+                        .font(.title)
+                        .minimumScaleFactor(0.75)
                     Button(buttonTitle.rawValue, action: {
                         if gameOver {
                             newGame()
