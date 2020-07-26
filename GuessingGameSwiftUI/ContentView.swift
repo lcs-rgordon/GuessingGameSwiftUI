@@ -31,14 +31,6 @@ struct ContentView: View {
     @State private var feedback = "\n"
     @State private var gameOver = false
     
-    private var buttonTitle: ButtonAction {
-        if gameOver {
-            return .newGame
-        } else {
-            return .guess
-        }
-    }
-
     var body: some View {
         ZStack {
             LinearGradient(gradient: Gradient(colors: [.primary, .secondary]), startPoint: .top, endPoint: .bottom)
@@ -57,7 +49,7 @@ struct ContentView: View {
                         .keyboardType(.numberPad)
                         .font(.title)
                         .minimumScaleFactor(0.75)
-                    Button(buttonTitle.rawValue, action: {
+                    Button("\(gameOver ? ButtonAction.newGame.rawValue : ButtonAction.guess.rawValue)" , action: {
                         if gameOver {
                             newGame()
                         } else {
