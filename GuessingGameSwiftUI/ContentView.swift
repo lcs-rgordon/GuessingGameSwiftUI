@@ -7,6 +7,9 @@
 
 import SwiftUI
 
+// App Icon source:
+// "Numbers..." by MervC is licensed under CC BY-NC 2.0
+
 // SOURCE: https://www.hackingwithswift.com/quick-start/swiftui/how-to-dismiss-the-keyboard-for-a-textfield
 #if canImport(UIKit)
 extension View {
